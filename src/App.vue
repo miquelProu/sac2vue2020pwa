@@ -5,7 +5,7 @@
             <div class="columns is-mobile">
                 <div class="column is-one-quarter">
                     <a href="#">
-                        <img class="is-hidden-desktop" style="width: 100%;"src="img/irrpb.png"/>
+                        <img class="" style="width: 100%;"src="img/irrpb.png"/>
                     </a>
                 </div>
                 <div class="column">
@@ -14,29 +14,14 @@
             </div>
         </div>
         <div class="container">
-            <div class="columns">
-                <div class="column  is-half">
-                    <div class="columns is-mobile" v-if="result">
-                        <div class="column">
-                            <h2>Probabilitat sense reroll</h2>
-                            <div id="probaNoReroll" >{{result.noReRoll}}%</div>
-                        </div>
-                        <div class="column">
-                            <h2>Probabilitat amb reroll</h2>
-                            <div id="probaYesReroll" >{{result.reRoll}}%</div>
-                        </div>
-                        <div class="column">
-                            <div class="buttons">
-                                <button class="button is-small is-danger is-outlined" @click="cleanSequence">Reset</button>
-                                <button class="button is-small xis-info viewprecent" :class="{'selected': (pintaSeq != null)}" @click="finsSeq(sequencia.length - 2);">%</button>
-                            </div>
-                        </div>
+            <div class="columns is-mobile">
+                <div class="column  is-one-quarter">
+                    <div class="buttons">
+                        <button class="button is-small is-danger is-outlined" @click="cleanSequence">Reset</button>
+                        <button class="button is-small xis-info viewprecent" :class="{'selected': (pintaSeq != null)}" @click="finsSeq(sequencia.length - 2);">%</button>
                     </div>
-
                 </div>
                 <div class="column">
-                    <h2 class="playerSkill" @click="showPlayerSkills = !showPlayerSkills">Habilitats <span class="arrow-down"></span></h2>
-
                     <boto :options="playerOptions"
                           @dodgeSkill="dodgeSkill = $event"
                           @surehandSkill="surehandSkill = $event"
@@ -48,18 +33,9 @@
                           v-if="showPlayerSkills"
                     ></boto>
                 </div>
-
             </div>
         </div>
-        <div class="container sequencia">
-            <sequencia :sequencia="txtSeq"
-                       @delete="deleteSeq"
-                       @clickar="clickSeq"
-                       @fins="finsSeq"
-                       :show="showSeq"
-                       :pinta="pintaSeq"
-            ></sequencia>
-        </div>
+
         <div class="container">
             <Tabs>
                 <Tab name="Accions" :selected="true">
@@ -93,6 +69,35 @@
                 <!--                    <other-action :loner-skill="lonerSkill" @action="addAction"></other-action>-->
                 <!--                </Tab>-->
             </Tabs>
+        </div>
+
+        <div class="container rrs" v-if="splitRrSequence.length > 0">
+            <div class="columns is-mobile" >
+                <div class="column has-text-centered"
+                     :class="{'is-one-fifth': (index < 2)}"
+                     v-for="(item, index) in splitRrSequence[0]"
+                >
+                    <h2 class="pr-2">RR{{index}}</h2>
+                    <div id="probaNoReroll" class="has-text-weight-bold">{{item}}%</div>
+                </div>
+                <div class="column is-narrow dots" @click="showRR = !showRR"  v-if="(splitRrSequence.length > 1)">&nbsp</div>
+            </div>
+            <div class="columns is-mobile" v-if="(splitRrSequence.length > 1) && showRR">
+                <div class="column is-one-fifth has-text-centered" v-for="(item, index) in splitRrSequence[1]">
+                    <h2 class="pr-2">RR{{index+5}}</h2>
+                    <div id="probaNoReroll" class="has-text-weight-bold">{{item}}%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container sequencia">
+            <sequencia :sequencia="txtSeq"
+                       @delete="deleteSeq"
+                       @clickar="clickSeq"
+                       @fins="finsSeq"
+                       :show="showSeq"
+                       :pinta="pintaSeq"
+            ></sequencia>
         </div>
     </section>
 
@@ -175,6 +180,7 @@ export default {
             showPlayerSkills: true,
             showSeq: [],
             pintaSeq: null,
+            showRR: false,
             playerOptions: [
                 {
                     name: 'Esquivar',
@@ -238,6 +244,21 @@ export default {
                 retorn.push(e.toString);
             });
             return retorn;
+        },
+        splitRrSequence: function() {
+            let retorn = [];
+            if(this.result){
+                let rr = this.result.reRolls.slice();
+                if (rr.length <= 5){
+                    retorn.push(rr);
+                } else {
+                    let arr = rr.splice(0,5);
+                    retorn.push(arr);
+                    retorn.push(rr);
+                }
+
+            }
+            return retorn;
         }
     },
     watch: {},
@@ -263,11 +284,13 @@ export default {
             this.sequencia.push(action);
             this.full.addAction(action);
             this.result = this.full.getProba();
+            console.log(this.result);
         },
         cleanSequence: function () {
             this.full = new fullSequence();
             this.sequencia = [];
-            this.result = this.full.getProba();
+            //this.result = this.full.getProba();
+            this.result = null;
             this.showSeq = [];
             this.pintaSeq = null;
         },
@@ -333,7 +356,7 @@ export default {
 
 <style lang="scss">
 @import './scss/mystyles.scss';
-@import './scss/variables.scss';
+//@import './scss/variables.scss';
 
 
 html {
@@ -369,7 +392,7 @@ html {
     scroll-behavior: smooth;
 
     body {
-        background-color: $back_peu;
+        background-color: #FFFFFF !important;
         font-family: sans-serif;
         font-size: 12px;
 
@@ -410,6 +433,37 @@ html {
             position: absolute;
             margin-left: 2px;
             top: 2px;
+        }
+    }
+
+    table.table {
+        tr th,
+        tr td {text-align: center;}
+    }
+
+    .rrs {
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 2px solid hsl(0, 0%, 86%);
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid hsl(0, 0%, 86%);
+
+        .dots{
+            cursor: pointer;
+            &::before{
+                position: absolute;
+                content: "";
+                font-size: 30px;
+                left:0;
+                right:0;
+            }
+            &::after {
+                content: '\2807';
+                font-size: 30px;
+                color: #777777;
+            }
+
         }
     }
 }

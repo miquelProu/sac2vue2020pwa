@@ -137,18 +137,15 @@ export default function fullSequence()
 
     this.getProba = function()
     {
+        let reRolls = [];
         for (let f=0; f<=this.sequence.length; f++){
             let r = this.getProbaReroll2(f);
             let noReRoll =  Math.round(r*100000)/1000;
             if(noReRoll <=0)noReRoll = r;
+            reRolls.push(noReRoll);
             console.log("RR "+f, noReRoll);
         }
-        /*
-        let rr = this.getProbaReroll2(true);
-        let reRoll =  Math.round(rr*100000)/1000;
-        if(reRoll <=0)reRoll = rr;
 
-        return {reRoll: reRoll, noReRoll: noReRoll, nActions: this.sequence.length, actions: this.sequence};
-        */
+        return {reRolls: reRolls, nActions: this.sequence.length, actions: this.sequence};
     }
 }
