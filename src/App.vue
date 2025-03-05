@@ -360,6 +360,9 @@ export default {
 
 
 html {
+    background-color: #FFFFFF !important;
+    height: 100%;
+
     @font-face {
         font-family: 'dPoly Block Dice';
         src: url('./assets/font/dPolyBlockDice.woff2') format('woff2'),
@@ -390,6 +393,7 @@ html {
         //overflow-y: hidden !important;
     }
     scroll-behavior: smooth;
+
 
     body {
         background-color: #FFFFFF !important;
