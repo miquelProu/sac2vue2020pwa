@@ -1,6 +1,6 @@
 <template>
     <div class="boto">
-        <div class="buttons has-addons">
+        <div class="buttons has-addons is-centered">
         <button class="button is-small"
              :class="{'is-info': (selected.includes(opt.model))}"
              v-for="opt in options"

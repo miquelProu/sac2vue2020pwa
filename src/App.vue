@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container tabuladors" style="padding-top: 0.75rem;">
             <Tabs>
                 <Tab name="Accions" :selected="true">
                     <boto :options="actionOptions"
