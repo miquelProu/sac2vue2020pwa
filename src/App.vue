@@ -74,7 +74,7 @@
         <div class="container rrs" v-if="splitRrSequence.length > 0">
             <div class="columns is-mobile" >
                 <div class="column has-text-centered"
-                     :class="{'is-one-fifth': (index < 2)}"
+                     :class="index < 2 ? 'rr_fons' : 'is-one-fifth'"
                      v-for="(item, index) in splitRrSequence[0]"
                 >
                     <h2 class="pr-2">RR{{index}}</h2>
@@ -183,23 +183,23 @@ export default {
             showRR: false,
             playerOptions: [
                 {
-                    name: 'Esquivar',
+                    name: 'Dodge',
                     model: 'dodgeSkill',
                 },
                 {
-                    name: 'Mans Segures',
+                    name: 'Sure Hands',
                     model: 'surehandSkill',
                 },
                 {
-                    name: 'Peus Ferms',
+                    name: 'Sure Feet',
                     model: 'surefeetSkill',
                 },
                 {
-                    name: 'Pasada Segura',
+                    name: 'Pass',
                     model: 'passSkill',
                 },
                 {
-                    name: 'Agafar',
+                    name: 'Catch',
                     model: 'catchSkill',
                 },
                 {
@@ -207,7 +207,7 @@ export default {
                     model: 'proSkill',
                 },
                 {
-                    name: 'Solitari',
+                    name: 'Loner',
                     model: 'lonerSkill',
                 }
             ],
@@ -249,10 +249,10 @@ export default {
             let retorn = [];
             if(this.result){
                 let rr = this.result.reRolls.slice();
-                if (rr.length <= 5){
+                if (rr.length <= 4){
                     retorn.push(rr);
                 } else {
-                    let arr = rr.splice(0,5);
+                    let arr = rr.splice(0,4 );
                     retorn.push(arr);
                     retorn.push(rr);
                 }
@@ -452,6 +452,13 @@ html {
         margin-bottom: 1.5rem;
         padding-bottom: 1rem;
         border-bottom: 1px solid hsl(0, 0%, 86%);
+
+        .rr_fons {
+            &:first-child{
+                border-right: 1px solid hsl(0, 0%, 86%);
+            }
+            background-color: whitesmoke;
+        }
 
         .dots{
             cursor: pointer;
