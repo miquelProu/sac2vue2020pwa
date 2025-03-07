@@ -16,7 +16,7 @@
         <div class="container">
             <div class="columns is-mobile">
                 <div class="column  is-one-quarter">
-                    <div class="buttons">
+                    <div class="buttons  is-centered">
                         <button class="button is-small is-danger is-outlined" @click="cleanSequence">Reset</button>
                         <button class="button is-small xis-info viewprecent" :class="{'selected': (pintaSeq != null)}" @click="finsSeq(sequencia.length - 2);">%</button>
                     </div>
@@ -82,8 +82,8 @@
                 </div>
                 <div class="column is-narrow dots" @click="showRR = !showRR"  v-if="(splitRrSequence.length > 1)">&nbsp</div>
             </div>
-            <div class="columns is-mobile" v-if="(splitRrSequence.length > 1) && showRR">
-                <div class="column is-one-fifth has-text-centered" v-for="(item, index) in splitRrSequence[1]">
+            <div class="columns is-mobile is-multiline" v-if="(splitRrSequence.length > 1) && showRR">
+                <div class="column has-text-centered" v-for="(item, index) in splitRrSequence[1]">
                     <h2 class="pr-2">RR{{index+5}}</h2>
                     <div id="probaNoReroll" class="has-text-weight-bold">{{item}}%</div>
                 </div>
@@ -419,10 +419,10 @@ html {
         }
     }
 
-    h2 {
+    /*h2 {
         font-family: sans-serif;
         font-size: 1em;
-    }
+    }*/
 
     .playerSkill {
         position: relative;

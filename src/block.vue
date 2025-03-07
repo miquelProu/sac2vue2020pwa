@@ -2,17 +2,17 @@
     <div class="actionCluster block">
         <div class="columns is-gapless">
             <div class="column is-half">
-                <b>Block</b>
+                <h2 class="has-text-centered is-family-primary is-size-6 dice_title">Dice</h2>
                 <div class="columns daus is-multiline is-gapless is-mobile">
                     <div class="column is-half-mobile" @click="daus(-3)" :class="(dice == -3) ? 'selected' : ''" style="color:red;"><span class="bbfont">igh</span></div>
                     <div class="column is-half-mobile" @click="daus(-2)" :class="(dice == -2) ? 'selected' : ''" style="color:red;"><span class="bbfont">hi</span></div>
-                    <div class="column" @click="daus(1)" :class="(dice == 1) ? 'selected' : ''"><span class="bbfont">j</span></div>
-                    <div class="column" @click="daus(2)" :class="(dice == 2) ? 'selected' : ''"><span class="bbfont">hh</span></div>
-                    <div class="column is-half-mobile" @click="daus(3)" :class="(dice == 3) ? 'selected' : ''"><span class="bbfont">hji</span></div>
+                    <div class="column" @click="daus(1)" :class="(dice == 1) ? 'selected' : ''"><span class="bbfont">i</span></div>
+                    <div class="column" @click="daus(2)" :class="(dice == 2) ? 'selected' : ''"><span class="bbfont">ih</span></div>
+                    <div class="column is-half-mobile" @click="daus(3)" :class="(dice == 3) ? 'selected' : ''"><span class="bbfont">igh</span></div>
                 </div>
             </div>
-            <div class="column">
-                <b>Success</b>
+            <div class="column" >
+                <h2 class="has-text-centered pb-2 is-family-primary is-size-6">Success</h2>
                 <div class="success">
                     <span class=" bbfont roll" @click="pow('blockSuccessSkull')" :class="{selected: (success.includes('blockSuccessSkull'))}">h</span>
                     <span class=" bbfont roll" @click="pow('blockSuccessPowSkull')" :class="{selected: (success.includes('blockSuccessPowSkull'))}">k</span>
@@ -22,6 +22,7 @@
                 </div>
             </div>
             <div class="column" style="text-align: center;">
+                <h2 class="has-text-centered pb-2 is-family-primary is-size-6">&nbsp;</h2>
                 <button class="button is-small" @click="addAction('block')">Add</button>
             </div>
         </div>
@@ -105,8 +106,10 @@ export default {
 
     .success {
         text-align: center;
+        margin-top: -20px;
         @include from($tablet) {
             text-align: left;
+            margin-top: 0;
         }
     }
 
@@ -147,7 +150,15 @@ export default {
         margin-top: 0;
 
         @include from($tablet) {
-            margin-top: 2rem;
+            margin-top: 1.4rem;
+        }
+    }
+
+    .dice_title {
+        padding-bottom: 0 !important;
+
+        @include from($tablet) {
+            padding-bottom: 0.5rem !important;
         }
     }
 }

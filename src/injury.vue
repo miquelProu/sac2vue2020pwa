@@ -1,14 +1,15 @@
 <template>
-    <div class="actionCluster injury" style="text-align:left;">
-        <h2>Injury Roll</h2>
+    <div class="actionCluster injury">
         <div class="columns is-mobile">
             <div class="column is-three-fifths">
+                <h2 class="has-text-centered pb-2 is-family-primary is-size-6">Injury Roll</h2>
                 <boto :options="options"
                       @injuryStun="stun"
                       @injuryKO="ko"
                       @injuryCas="cas"></boto>
             </div>
             <div class="column">
+                <h2 class="has-text-centered pb-2 is-family-primary is-size-6">&nbsp;</h2>
                 <button class="button is-small" @click="addAction('injury')">Add</button>
             </div>
         </div>
