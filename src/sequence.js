@@ -140,7 +140,7 @@ export default function fullSequence()
         let reRolls = [];
         for (let f=0; f<=this.sequence.length; f++){
             let r = this.getProbaReroll2(f);
-            let noReRoll =  Math.round(r*100000)/1000;
+            let noReRoll =  Math.round(r*10000)/100;
             if(noReRoll <=0)noReRoll = r;
             reRolls.push(noReRoll);
             console.log("RR "+f, noReRoll);

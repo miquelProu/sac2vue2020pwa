@@ -2,14 +2,14 @@
 
     <section class="section">
         <div class="container">
-            <div class="columns is-mobile">
-                <div class="column is-one-quarter">
+            <div class="columns is-mobile is-vcentered">
+                <div class="column  is-one-third-mobile is-one-fifth-tablet is-one-fifth-desktop">
                     <a href="#">
-                        <img class="" style="width: 100%;"src="img/irrpb.png"/>
+                        <img class="ml-4" style="width: 100%;"src="img/irrpb.png"/>
                     </a>
                 </div>
                 <div class="column">
-                    <div class="titol"><span>BLOOD BOWL</span> PROBABILITY <span>CALCULATOR</span></div>
+                    <div class="titol"><span>BLOOD BOWL</span> PROBABILITY<br/> <span>CALCULATOR</span></div>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
 
         <div class="container tabuladors" style="padding-top: 0.75rem;">
             <Tabs>
-                <Tab name="Accions" :selected="true">
+                <Tab name="Actions" :selected="true">
                     <boto :options="actionOptions"
                           :clearSelected="clearActionSelected"
                           :is-alone="true"
@@ -49,13 +49,13 @@
                           style="margin-bottom: 0.75rem;"></boto>
                     <teclat :numbers="numbersComp" :color="'#EEEEEE'" @selected="action"></teclat>
                 </Tab>
-                <Tab name="Pasada">
+                <Tab name="Pass">
                     <passes :loner-skill="lonerSkill" :pass-skill="passSkill" @action="addAction"></passes>
                 </Tab>
                 <Tab name="Block">
                     <block :loner-skill="lonerSkill" @action="addAction"></block>
                 </Tab>
-                <Tab name="Lesió">
+                <Tab name="Armor Break">
                     <div class="columns">
                         <div class="column">
                             <armor-break @action="addAction"></armor-break>
@@ -77,15 +77,15 @@
                      :class="index < 2 ? 'rr_fons' : 'is-one-fifth'"
                      v-for="(item, index) in splitRrSequence[0]"
                 >
-                    <h2 class="pr-2">RR{{index}}</h2>
-                    <div id="probaNoReroll" class="has-text-weight-bold">{{item}}%</div>
+                    <h2 class="pr-2 is-family-primary is-size-7">RR{{index}}</h2>
+                    <div id="probaNoReroll" class="is-family-primary has-text-weight-bold is-size-5">{{item}}%</div>
                 </div>
                 <div class="column is-narrow dots" @click="showRR = !showRR"  v-if="(splitRrSequence.length > 1)">&nbsp</div>
             </div>
             <div class="columns is-mobile is-multiline" v-if="(splitRrSequence.length > 1) && showRR">
                 <div class="column has-text-centered" v-for="(item, index) in splitRrSequence[1]">
-                    <h2 class="pr-2">RR{{index+5}}</h2>
-                    <div id="probaNoReroll" class="has-text-weight-bold">{{item}}%</div>
+                    <h2 class="pr-2 is-family-primary is-size-7">RR{{index+5}}</h2>
+                    <div id="probaNoReroll" class="is-family-primary has-text-weight-bold is-size-5">{{item}}%</div>
                 </div>
             </div>
         </div>
@@ -213,20 +213,20 @@ export default {
             ],
             actionOptions: [
                 {
-                    name: 'Esquivar',
+                    name: 'Dodge',
                     model: 'esquiva',
                     selected: true
                 },
                 {
-                    name: 'Recollir',
+                    name: 'Pick Up',
                     model: 'recoger',
                 },
                 {
-                    name: 'A Per ells',
+                    name: 'Rush',
                     model: 'ap',
                 },
                 {
-                    name: 'Agafar',
+                    name: 'Catch',
                     model: 'atrapar',
                 },
             ]

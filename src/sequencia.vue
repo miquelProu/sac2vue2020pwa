@@ -49,7 +49,7 @@ export default {
 
                        let k = ele.idx;
                        let v = ele.proba;
-                       r[k] = `${Math.round(v.noReRoll*100)/100}%&nbsp;&nbsp;&nbsp;${Math.round(v.reRoll*100)/100}%<span class="num">&nbsp;</span>`;
+                       r[k] = `${Math.round(v.reRolls[0]*100)/100}%&nbsp;&nbsp;&nbsp;${Math.round(v.reRolls[1]*100)/100}%<span class="num">&nbsp;</span>`;
                });
            }
            return r;

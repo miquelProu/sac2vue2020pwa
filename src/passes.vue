@@ -9,7 +9,7 @@
             <div class="column is-three-fifths">
                 <div class="columns">
                     <div class="column is-one-fifth">
-                        <h2 class="has-text-centered pt-2 is-family-primary is-size-6">Interception</h2>
+                        <h2 class="has-text-centered pt-2 is-family-primary is-size-6">Interference</h2>
                     </div>
                     <div class="column">
                         <teclat :is-selectable="true" :numbers="numbersInter" :color="'#FFF5F5'" @selected="interceptionVal = $event"></teclat>

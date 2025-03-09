@@ -4,13 +4,19 @@
 
     import fullSequence from "./sequence";
 
+
+function txtLoner(isLoner)
+{
+    return (isLoner)?'<span class="hab solitario">Loner</span>':'';
+}
 export function playerAction(x, isLoner)
 {
     this.isLoner = isLoner;
     this.probaNoReroll = (7-x)/6;
     this.probaYesReroll = ((x-1)/6)*((7-x)/6);
-    let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
-    this.toString = 'Acció '+x+'+'+tLoner;
+    //let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
+    let tLoner = txtLoner(isLoner);
+    this.toString = 'Action '+x+'+'+tLoner;
 }
 
 export function dodge(x, hasSkill, isLoner)
@@ -19,8 +25,9 @@ export function dodge(x, hasSkill, isLoner)
     this.isLoner = isLoner;
     this.probaNoReroll = (7-x)/6;
     this.probaYesReroll = ((x-1)/6)*((7-x)/6);
-    let wDodge = (hasSkill)?'<span class="hab">esquivar </span>':'';
-    let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
+    let wDodge = (hasSkill)?'<span class="hab">Dodge </span>':'';
+    //let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
+    let tLoner = txtLoner(isLoner);
     this.toString = 'Esquivar <span class="num">'+x+'+</span> '+wDodge+tLoner;
 }
 
@@ -45,12 +52,13 @@ export function pass(x, hasSkill, isLoner, interception, interceptionWithPro, in
     this.interceptionOdd = interceptionOdd;
     this.probaNoReroll = (7-x)/6;
     this.probaYesReroll = ((x-1)/6)*((7-x)/6);
-    let wSkill = (hasSkill)?'<span class="hab">pasada segura</span>':'';
-    let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
+    let wSkill = (hasSkill)?'<span class="hab">Sure Pass </span>':'';
+    //let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
+    let tLoner = txtLoner(isLoner);
 console.log(interceptionOdd);
     let rInterceptionOdd =  Math.round(interceptionOdd*1000)/10;
     let tInterceptionOdd = ( interceptionOdd!=1 )? ' <span class="negative">(<span class="is-hidden-touch">int:</span>'+rInterceptionOdd+'%)</span>':'';
-    this.toString = 'Pasada <span class="num">'+x+'+</span> '+wSkill+tLoner+tInterceptionOdd;
+    this.toString = 'Pass <span class="num">'+x+'+</span> '+wSkill+tLoner+tInterceptionOdd;
 }
 
 export function catching(x, hasSkill, isLoner)
@@ -59,8 +67,9 @@ export function catching(x, hasSkill, isLoner)
     this.isLoner = isLoner;
     this.probaNoReroll = (7-x)/6;
     this.probaYesReroll = ((x-1)/6)*((7-x)/6);
-    let wSkill = (hasSkill)?'<span class="hab">agafar </span>':'';
-    let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
+    let wSkill = (hasSkill)?'<span class="hab">Catch </span>':'';
+    //let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
+    let tLoner = txtLoner(isLoner);
     this.toString = 'Agafar <span class="num">'+x+'+ '+wSkill+tLoner;
 }
 export function pickup(x, hasSkill, isLoner)
@@ -69,8 +78,9 @@ export function pickup(x, hasSkill, isLoner)
     this.isLoner = isLoner;
     this.probaNoReroll = (7-x)/6;
     this.probaYesReroll = ((x-1)/6)*((7-x)/6);
-    let wSkill = (hasSkill)?'<span class="hab">recollir </span>':'';
-    let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
+    let wSkill = (hasSkill)?'<span class="hab">Pick up </span>':'';
+    //let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
+    let tLoner = txtLoner(isLoner);
     this.toString = 'Recollir <span class="num">'+x+'+</span> '+wSkill+tLoner;
 }
 
