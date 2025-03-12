@@ -1,15 +1,15 @@
 <template>
 
-    <section class="section">
+    <section class="section is-fullheight">
         <div class="container">
             <div class="columns is-mobile is-vcentered">
-                <div class="column  is-one-third-mobile is-one-fifth-tablet is-one-fifth-desktop">
-                    <a href="#">
+                <div class="column  is-one-third-mobile is-one-fifth-tablet is-one-fifth-widescreen">
+                    <a href="https://www.irregularesplanb.com/" target="_blank">
                         <img class="ml-4" style="width: 100%;"src="img/irrpb.png"/>
                     </a>
                 </div>
                 <div class="column">
-                    <div class="titol"><span>BLOOD BOWL</span> PROBABILITY<br/> <span>CALCULATOR</span></div>
+                    <div class="titol"><span>BLOOD BOWL</span> ODDS <br/><span>CALCULATOR</span></div>
                 </div>
             </div>
         </div>
@@ -65,9 +65,9 @@
                         </div>
                     </div>
                 </Tab>
-                <!--                <Tab name="Altre">-->
-                <!--                    <other-action :loner-skill="lonerSkill" @action="addAction"></other-action>-->
-                <!--                </Tab>-->
+                <Tab name="Other action">
+                <other-action :loner-skill="lonerSkill" @action="addAction"></other-action>
+                </Tab>
             </Tabs>
         </div>
 
@@ -78,7 +78,7 @@
                      v-for="(item, index) in splitRrSequence[0]"
                 >
                     <h2 class="pr-2 is-family-primary is-size-7">RR{{index}}</h2>
-                    <div id="probaNoReroll" class="is-family-primary has-text-weight-bold is-size-5">{{item}}%</div>
+                    <div id="probaNoReroll" class="is-family-primary has-text-weight-bold is-size-5" :class="(item == 0) ? 'has-text-danger': '' ">{{item}}%</div>
                 </div>
                 <div class="column is-narrow dots" @click="showRR = !showRR"  v-if="(splitRrSequence.length > 1)">&nbsp</div>
             </div>
@@ -99,30 +99,8 @@
                        :pinta="pintaSeq"
             ></sequencia>
         </div>
+        <footer class="is-size-7"><a class="is-underlined" href="https://www.irregularesplanb.com/" target="_blank">Irregulars PlanB</a> - <a class="is-underlined" href="https://www.irregularesplanb.com/" target="_blank">Github</a></footer>
     </section>
-
-    <!--            <div style="clear:both; height: 60px;"></div>
-
-
-                <div id="storeContainer"><h3>Stored Sequences</h3>...</div>
-
-                <div class="warning">
-                    Warning: this tool will(should) give you the odds for a precise sequence. It will not demonstrate that Nuffle hates you.
-                    <br/>
-                    Warning: this tool is still in development, it may display errors in the calculations. If you do spot any error, please report it to Elyoukey (if you do spot errors you are smart and interested enough to not need more information to track me). Thanks in advance. <br/>
-                    <br/>
-                    English not being my mother tongue, this tool may also display English errors, feel free to report those too.
-                    <br/><br/>
-
-
-                </div>
-                <div class="notices">
-                    * Pro reroll: the system by default will assume that you are using the pro skill only if there is no team reroll left.
-                    To change this behavior for an action, use the checkbox in the actionbox. The system will then calculate the odds assuming that you will use the pro skill prior to a reroll but will use the reroll if the pro roll fails.
-                    It may lead to little odd increase for several sequences (for exemple : action5+ action5+ action3+ action6+ the pro skill should be used on first roll)
-                    <br/><br/>
-                    ** Interception: the sequence displays <span class="negative">in red the probability for the pass to NOT be intercepted</span> ( = 1-odd to succeed the interception)
-                </div>-->
 </template>
 
 <script>
@@ -405,14 +383,31 @@ html {
         }
     }
 
+    section {
+        height: 100vh;
+        position: relative;
+    }
+
+    footer {
+        position:absolute;
+        bottom: 0;
+        right: calc(50% - 66px);
+    }
+
     .titol {
         font-family: 'Gutcruncher';
         text-align: center;
         font-size: 6.5vw;
 
         @include from($tablet) {
-            font-size: 2.6vw;
+            font-size: 4.6vw;
         }
+
+        @include from($widescreen) {
+            font-size: 3.0vw;
+        }
+
+
 
         span {
             color: $irrpb;

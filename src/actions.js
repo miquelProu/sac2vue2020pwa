@@ -28,7 +28,7 @@ export function dodge(x, hasSkill, isLoner)
     let wDodge = (hasSkill)?'<span class="hab">Dodge </span>':'';
     //let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
     let tLoner = txtLoner(isLoner);
-    this.toString = 'Esquivar <span class="num">'+x+'+</span> '+wDodge+tLoner;
+    this.toString = 'Dodge <span class="num">'+x+'+</span> '+wDodge+tLoner;
 }
 
 export function pass(x, hasSkill, isLoner, interception, interceptionWithPro, interceptionWithCatch)
@@ -55,7 +55,6 @@ export function pass(x, hasSkill, isLoner, interception, interceptionWithPro, in
     let wSkill = (hasSkill)?'<span class="hab">Sure Pass </span>':'';
     //let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
     let tLoner = txtLoner(isLoner);
-console.log(interceptionOdd);
     let rInterceptionOdd =  Math.round(interceptionOdd*1000)/10;
     let tInterceptionOdd = ( interceptionOdd!=1 )? ' <span class="negative">(<span class="is-hidden-touch">int:</span>'+rInterceptionOdd+'%)</span>':'';
     this.toString = 'Pass <span class="num">'+x+'+</span> '+wSkill+tLoner+tInterceptionOdd;
@@ -70,7 +69,7 @@ export function catching(x, hasSkill, isLoner)
     let wSkill = (hasSkill)?'<span class="hab">Catch </span>':'';
     //let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
     let tLoner = txtLoner(isLoner);
-    this.toString = 'Agafar <span class="num">'+x+'+ '+wSkill+tLoner;
+    this.toString = 'Catch <span class="num">'+x+'+ '+wSkill+tLoner;
 }
 export function pickup(x, hasSkill, isLoner)
 {
@@ -81,7 +80,7 @@ export function pickup(x, hasSkill, isLoner)
     let wSkill = (hasSkill)?'<span class="hab">Pick up </span>':'';
     //let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
     let tLoner = txtLoner(isLoner);
-    this.toString = 'Recollir <span class="num">'+x+'+</span> '+wSkill+tLoner;
+    this.toString = 'Pick up <span class="num">'+x+'+</span> '+wSkill+tLoner;
 }
 
 
@@ -92,9 +91,10 @@ export function gfi(x, hasSurefeet, isLoner)
     this.isLoner = isLoner;
     this.probaNoReroll = (7-x)/6;
     this.probaYesReroll = ((x-1)/6)*((7-x)/6);
-    let wDodge = (hasSurefeet)?'<span class="hab">peus ferms </span>':'';
-    let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
-    this.toString = 'AP <span class="num">'+x+'+</span> '+wDodge+tLoner;
+    let wDodge = (hasSurefeet)?'<span class="hab">Sure Feet </span>':'';
+    //let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
+    let tLoner = txtLoner(isLoner);
+    this.toString = 'Rush <span class="num">'+x+'+</span> '+wDodge+tLoner;
 }
 
 export function block(nbDice, nbSuccess, isLoner)
@@ -120,7 +120,8 @@ export function block(nbDice, nbSuccess, isLoner)
             break;
     }
     this.probaYesReroll = (1-this.probaNoReroll)*this.probaNoReroll;
-    let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
+    //let tLoner = (isLoner)?'<span class="hab solitario">solitari</span>':'';
+    let tLoner = txtLoner(isLoner);
     let clas = (nbDice== -3 || nbDice== -2) ? "num vermell" : "num";
     this.toString = 'Block <span class="'+clas+'">'+nbDice+'D</span> ('+nbSuccess+'*)'+tLoner;
 }
@@ -149,7 +150,7 @@ export function armorbreak(armorValue)
     this.probaNoReroll=proba;
     this.probaYesReroll = (1-this.probaNoReroll)*this.probaNoReroll;
     var ar = 1*armorvalue+1;
-    this.toString = 'AT <span class="num">'+ar+'+</span>';
+    this.toString = 'Armor Break <span class="num">'+ar+'+</span>';
 }
 
 export function injury(stunChecked, koChecked, casChecked)
@@ -164,20 +165,20 @@ export function injury(stunChecked, koChecked, casChecked)
     if( stunChecked )
     {
         proba+= 21/36;
-        injuryText += 'atordit ';
+        injuryText += 'Stunned ';
     }
     if( koChecked )
     {
         proba+= 9/36;
-        injuryText += 'KO ';
+        injuryText += 'K.O. ';
     }
     if( casChecked )
     {
         proba+= 6/36;
-        injuryText += 'lesió ';
+        injuryText += 'Wounded ';
     }
     this.cannotUseReroll=true;
     this.probaNoReroll=proba;
     this.probaYesReroll = (1-this.probaNoReroll)*this.probaNoReroll;
-    this.toString = 'lesió <span class="num">('+injuryText+')</span>';
+    this.toString = 'Injury <span class="num">('+injuryText+')</span>';
 }
