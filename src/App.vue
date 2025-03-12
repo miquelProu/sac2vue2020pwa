@@ -99,7 +99,7 @@
                        :pinta="pintaSeq"
             ></sequencia>
         </div>
-        <footer class="is-size-7"><a class="is-underlined" href="https://www.irregularesplanb.com/" target="_blank">Irregulars PlanB</a> - <a class="is-underlined" href="https://www.irregularesplanb.com/" target="_blank">Github</a></footer>
+        <footer class="is-size-7"><a class="is-underlined" href="https://www.irregularesplanb.com/" target="_blank">Irregulars PlanB</a> - <a class="is-underlined" href="https://github.com/miquelProu/sac2vue2020pwa" target="_blank">Github</a></footer>
     </section>
 </template>
 
